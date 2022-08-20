@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aks-nginx002-deployment
+  name: aks-nginx003-deployment
   labels:
     app: nginx
 spec:
@@ -19,5 +19,15 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
-
+kind: Service
+metadata:
+  name: aks-nginx003-service-port-8000
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 80
+  type: LoadBalancer
        
